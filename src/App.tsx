@@ -1,19 +1,21 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { TIME_ZONE, concertTime, dayStartTime, people, artists } from './config'
 import { getOsloNow, parseHHMM, secondsSinceMidnight } from './time'
 import { Countdown } from './components/Countdown'
 import { PersonCard } from './components/PersonCard'
+import { Waves } from "lucide-react"
+import { ScheduleBar } from './components/ScheduleBar'
 
 function App() {
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
 
   useEffect(() => {
     const id = window.setInterval(() => setTick((v) => v + 1), 1000)
     return () => window.clearInterval(id)
   }, [])
 
-  const now = useMemo(() => getOsloNow(TIME_ZONE), [tick])
+  const now = getOsloNow(TIME_ZONE)
 
   const nowSeconds = secondsSinceMidnight(now)
   const nowHHMM = `${String(now.hours).padStart(2, '0')}:${String(now.minutes).padStart(2, '0')}`
@@ -38,7 +40,7 @@ function App() {
             I dag • {nowHHMM} • <span className="tz">{TIME_ZONE}</span>
           </h1>
         </div>
-        <div className="pill">🎟️ One-day vibe</div>
+        <div className="pill"><Waves size={18}/> One-day vibe</div>
       </header>
 
       <main className="grid">
@@ -92,6 +94,7 @@ function App() {
               </article>
             ))}
           </div>
+          <ScheduleBar nowSeconds={nowSeconds} />
         </div>
       </footer>
     </div>

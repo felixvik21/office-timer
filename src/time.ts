@@ -13,12 +13,29 @@ export function parseHHMM(value: string): { hours: number; minutes: number } | n
   return { hours, minutes }
 }
 
+export function minutesSinceMidnightFromHHMM(value: string): number | null {
+  const parsed = parseHHMM(value)
+  if (!parsed) return null
+  return parsed.hours * 60 + parsed.minutes
+}
+
+export function minutesSinceMidnight(now: { hours: number; minutes: number }): number {
+  return now.hours * 60 + now.minutes
+}
+
 export function format2(n: number): string {
   return String(n).padStart(2, '0')
 }
 
 export function formatHHMM(hours: number, minutes: number): HHMM {
   return `${format2(hours)}:${format2(minutes)}` as HHMM
+}
+
+export function formatMinutesAsHHMM(totalMinutes: number): HHMM {
+  const safe = Math.max(0, Math.floor(totalMinutes))
+  const hours = Math.floor(safe / 60)
+  const minutes = safe % 60
+  return formatHHMM(hours, minutes)
 }
 
 export function formatHHMMSS(hours: number, minutes: number, seconds: number): string {

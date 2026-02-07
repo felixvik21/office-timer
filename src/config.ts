@@ -11,6 +11,22 @@ export const concertTime = '21:30' as const
 // Baren viser alltid intervallet 08:00 → konsert.
 export const dayStartTime = '08:00' as const
 
+export type ScheduleItem = {
+  label: string
+  start: string
+  end: string
+}
+
+// Dagens plan (vises i sticky bar nederst)
+export const schedule: ScheduleItem[] = [
+  { label: 'Vibe-coding', start: '08:00', end: '11:00' },
+  { label: 'Jobbe', start: '11:00', end: '12:00' },
+  { label: 'Lunsj', start: '12:00', end: '13:00' },
+  { label: 'Jobbe', start: '13:00', end: '17:00' },
+  { label: 'Middag', start: '17:00', end: '18:00' },
+  { label: 'Vors', start: '18:00', end: '21:30' },
+]
+
 export type PersonConfig = {
   name: string
   startTime: string | null
