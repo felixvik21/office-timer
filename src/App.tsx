@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
-import { TIME_ZONE, concertTime, people, artists } from './config'
+import { TIME_ZONE, concertTime, dayStartTime, people, artists } from './config'
 import { getOsloNow, parseHHMM, secondsSinceMidnight } from './time'
 import { Countdown } from './components/Countdown'
 import { PersonCard } from './components/PersonCard'
@@ -20,6 +20,9 @@ function App() {
 
   const concertParsed = parseHHMM(concertTime)
   const concertSeconds = concertParsed ? concertParsed.hours * 3600 + concertParsed.minutes * 60 : 21 * 3600 + 30 * 60
+
+  const dayStartParsed = parseHHMM(dayStartTime)
+  const dayStartSeconds = dayStartParsed ? dayStartParsed.hours * 3600 + dayStartParsed.minutes * 60 : 8 * 3600
 
   const isConcertTime = nowSeconds >= concertSeconds
   const secondsLeft = Math.max(0, concertSeconds - nowSeconds)
@@ -48,6 +51,8 @@ function App() {
               person={person}
               nowHHMM={nowHHMM}
               nowSeconds={nowSeconds}
+              dayStartSeconds={dayStartSeconds}
+              dayStartLabel={dayStartTime}
               concertSeconds={concertSeconds}
               isConcertTime={isConcertTime}
             />
@@ -67,7 +72,7 @@ function App() {
             {artists.map((artist) => (
               <article key={artist.name} className="artistCard">
                 <div className="artistTop">
-                  <div className="artistEmoji" aria-hidden="true">{artist.emoji}</div>
+                  <div className="artistEmoji" aria-hidden="true">{artist.icon}</div>
                   <div className="artistMeta">
                     <div className="artistName">{artist.name}</div>
                     <div className="artistRole">{artist.role}</div>

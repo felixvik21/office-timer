@@ -3,7 +3,12 @@
   gap: 12px;
 }
 
+.trackOuter {
+  position: relative;
+}
+
 .track {
+  position: relative;
   height: 22px;
   border-radius: 999px;
   overflow: hidden;
@@ -27,18 +32,23 @@
 }
 
 .fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   height: 100%;
   width: 0%;
   border-radius: 999px;
-  transition: width 700ms ease;
+  transition: width 700ms ease, left 700ms ease;
   box-shadow: 0 0 26px rgba(255, 255, 255, 0.18);
 }
 
-.wrap[data-disabled='true'] {
-  opacity: 0.72;
-}
-
-.wrap[data-disabled='true'] .track {
+.unused {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
   background:
     repeating-linear-gradient(
       135deg,
@@ -47,6 +57,46 @@
       rgba(255, 255, 255, 0.03) 10px,
       rgba(255, 255, 255, 0.03) 20px
     );
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.markerLine {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  left: 0;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+}
+
+.markerLabel {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.84);
+  white-space: nowrap;
+}
+
+.wrap[data-disabled='true'] {
+  opacity: 0.72;
+}
+
+.wrap[data-disabled='true'] .track {
   border-style: dashed;
 }
 

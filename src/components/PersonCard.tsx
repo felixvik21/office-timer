@@ -7,6 +7,8 @@ export type PersonCardProps = {
   person: PersonConfig
   nowHHMM: string
   nowSeconds: number
+  dayStartSeconds: number
+  dayStartLabel: string
   concertSeconds: number
   isConcertTime: boolean
 }
@@ -15,6 +17,8 @@ export function PersonCard({
   person,
   nowHHMM,
   nowSeconds,
+  dayStartSeconds,
+  dayStartLabel,
   concertSeconds,
   isConcertTime,
 }: PersonCardProps) {
@@ -38,17 +42,33 @@ export function PersonCard({
   const endSeconds = Math.min(nowSeconds, concertSeconds)
   const totalSeconds = startSeconds !== null ? Math.max(0, endSeconds - startSeconds) : 0
 
-  const denom = startSeconds !== null ? Math.max(1, concertSeconds - startSeconds) : 1
-  const progress = startSeconds !== null ? clamp01((nowSeconds - startSeconds) / denom) : 0
-
   const officeNowSeconds = startSeconds !== null ? Math.max(0, Math.min(nowSeconds, concertSeconds) - startSeconds) : 0
+
+  const dayDenom = Math.max(1, concertSeconds - dayStartSeconds)
+  const safeStartSeconds = startSeconds !== null ? Math.max(dayStartSeconds, startSeconds) : null
+  const unused = safeStartSeconds !== null
+    ? clamp01((safeStartSeconds - dayStartSeconds) / dayDenom)
+    : 1
+
+  const active = safeStartSeconds !== null
+    ? clamp01((Math.min(nowSeconds, concertSeconds) - safeStartSeconds) / dayDenom)
+    : 0
+
+  const showMarker = hasValidStart && safeStartSeconds !== null && safeStartSeconds > dayStartSeconds
+  const markerOffset = showMarker ? unused : undefined
+  const markerLabel = showMarker ? person.startTime ?? undefined : undefined
+
+  const endLabel = formatHHMM(
+    Math.floor(concertSeconds / 3600),
+    Math.floor((concertSeconds % 3600) / 60)
+  )
 
   return (
     <article className={styles.card}>
       <header className={styles.header}>
         <div className={styles.who}>
           <div className={styles.emoji} aria-hidden="true">
-            {person.emoji}
+            {person.icon}
           </div>
           <div>
             <div className={styles.name}>{person.name}</div>
@@ -75,7 +95,12 @@ export function PersonCard({
       </header>
 
       <ProgressBar
-        value={progress}
+        unused={unused}
+        active={active}
+        markerLabel={markerLabel}
+        markerOffset={markerOffset}
+        dayStartLabel={dayStartLabel}
+        endLabel={endLabel}
         color={person.color}
         label={`${person.name} progress`}
         disabled={isMissing}
