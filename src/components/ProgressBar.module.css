@@ -1,117 +1,118 @@
 .wrap {
-  display: grid;
-  gap: 12px;
+    display: grid;
+    gap: 12px;
 }
 
 .trackOuter {
-  position: relative;
+    position: relative;
 }
 
 .track {
-  position: relative;
-  height: 22px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+    position: relative;
+    height: 22px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
 }
 
 @media (orientation: portrait) {
-  .track {
-    height: 28px;
-  }
+    .track {
+        height: 28px;
+    }
 
-  .wrap {
-    gap: 14px;
-  }
+    .wrap {
+        gap: 14px;
+    }
 
-  .meta {
-    font-size: 14px;
-  }
+    .meta {
+        font-size: 14px;
+    }
 }
 
 .fill {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  width: 0%;
-  border-radius: 999px;
-  transition: width 700ms ease, left 700ms ease;
-  box-shadow: 0 0 26px rgba(255, 255, 255, 0.18);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: width 700ms ease, left 700ms ease;
+    box-shadow: 0 0 26px rgba(255, 255, 255, 0.18);
 }
 
 .unused {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0px,
-      rgba(255, 255, 255, 0.08) 10px,
-      rgba(255, 255, 255, 0.03) 10px,
-      rgba(255, 255, 255, 0.03) 20px
-    );
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background:
+        repeating-linear-gradient(135deg,
+            rgba(255, 255, 255, 0.08) 0px,
+            rgba(255, 255, 255, 0.08) 10px,
+            rgba(255, 255, 255, 0.03) 10px,
+            rgba(255, 255, 255, 0.03) 20px);
 }
 
 .marker {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transform: translateX(-50%);
-  pointer-events: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 10;
 }
 
 .markerLine {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 2px;
-  left: 0;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    left: 0;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
 }
 
 .markerLabel {
-  position: absolute;
-  left: 0;
-  bottom: calc(100% + 6px);
-  transform: translateX(-50%);
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.84);
-  white-space: nowrap;
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 6px);
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.84);
+    white-space: nowrap;
 }
 
 .wrap[data-disabled='true'] {
-  opacity: 0.72;
+    opacity: 0.72;
 }
 
 .wrap[data-disabled='true'] .track {
-  border-style: dashed;
+    border-style: dashed;
 }
 
 .wrap[data-disabled='true'] .fill {
-  box-shadow: none;
-  transition: none;
+    box-shadow: none;
+    transition: none;
 }
 
 .meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.72);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .end {
-  letter-spacing: 0.08em;
+    letter-spacing: 0.08em;
 }

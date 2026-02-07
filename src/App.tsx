@@ -72,7 +72,7 @@ function App() {
             {artists.map((artist) => (
               <article key={artist.name} className="artistCard">
                 <div className="artistTop">
-                  <div className="artistEmoji" aria-hidden="true">{artist.icon}</div>
+                  <div className="artistEmoji" aria-hidden="true"><artist.icon /></div>
                   <div className="artistMeta">
                     <div className="artistName">{artist.name}</div>
                     <div className="artistRole">{artist.role}</div>

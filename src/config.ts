@@ -1,3 +1,6 @@
+import type { LucideIcon } from "lucide-react"
+import { Balloon, Banana, ChartScatter, Frown, Smile } from "lucide-react"
+
 export const TIME_ZONE = 'Europe/Oslo'
 
 // Endre startTime her når de kommer.
@@ -12,13 +15,13 @@ export type PersonConfig = {
   name: string
   startTime: string | null
   color: string
-  icon: string
+  icon: LucideIcon
 }
 
 export type ArtistInfo = {
   name: string
   role: 'Hovedartist' | 'Support'
-  icon: string
+  icon: LucideIcon
   listeners: string | null
   blurb: string
   highlights: [string, string]
@@ -26,9 +29,9 @@ export type ArtistInfo = {
 
 export const people: PersonConfig[] = [
   // Lucida-vennlige ikon-glyphs (tekst, ikke emoji)
-  { name: 'Felix', startTime: '08:00', color: '#7C3AED', icon: '✦' },
-  { name: 'Chriz', startTime: null, color: '#06B6D4', icon: '⌁' },
-  { name: 'Viljen', startTime: '09:10', color: '#F97316', icon: '⊘' },
+  { name: 'Felix', startTime: '08:00', color: '#7C3AED', icon: Balloon },
+  { name: 'Chriz', startTime: null, color: '#06B6D4', icon: ChartScatter },
+  { name: 'Viljen', startTime: '09:10', color: '#F97316', icon: Banana },
 ]
 
 // Endre tekst/tall her hvis du vil (f.eks. månedlige lyttere).
@@ -36,7 +39,7 @@ export const artists: ArtistInfo[] = [
   {
     name: 'Gjenfødt Kultur',
     role: 'Hovedartist',
-    icon: '★',
+    icon: Frown,
     listeners: "37k",
     blurb: 'Kveldens store øyeblikk. Mørkt, varmt og litt for høyt (på den gode måten).',
     highlights: ['Ta med venner', 'Syng med på refrenget'],
@@ -44,7 +47,7 @@ export const artists: ArtistInfo[] = [
   {
     name: 'tre40fire',
     role: 'Support',
-    icon: '»',
+    icon: Smile,
     listeners: "1.5k",
     blurb: 'Support-sett som setter tempoet. Møt opp tidlig og få med deg hele greia.',
     highlights: ['Kom før køen', 'Få med første drop'],

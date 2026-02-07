@@ -34,6 +34,7 @@ export function ProgressBar({
       aria-label={label}
     >
       <div className={styles.trackOuter}>
+    
         {markerPct !== null && markerPct > 0 && (
           <div className={styles.marker} style={{ left: `${Math.round(markerPct * 100)}%` }}>
             <div className={styles.markerLine} />
@@ -53,8 +54,10 @@ export function ProgressBar({
           />
         </div>
       </div>
+          
       <div className={styles.meta}>
         <span>{dayStartLabel}</span>
+        <span>{Math.round(activeWidthPct)}%</span>
         <span className={styles.end}>{endLabel}</span>
       </div>
     </div>

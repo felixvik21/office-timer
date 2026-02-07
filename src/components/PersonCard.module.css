@@ -12,9 +12,15 @@
   gap: 14px;
 }
 
+.time {
+  display: flex;
+  gap: 24px;
+}
+
 @media (orientation: portrait) {
   .card {
     padding: 22px;
+    gap: 40px;
   }
 
   .name {

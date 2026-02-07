@@ -3,124 +3,127 @@ import { formatDuration, formatHHMM, parseHHMM } from '../time'
 import type { PersonConfig } from '../config'
 import { ProgressBar } from './ProgressBar'
 
+
 export type PersonCardProps = {
-  person: PersonConfig
-  nowHHMM: string
-  nowSeconds: number
-  dayStartSeconds: number
-  dayStartLabel: string
-  concertSeconds: number
-  isConcertTime: boolean
+    person: PersonConfig
+    nowHHMM: string
+    nowSeconds: number
+    dayStartSeconds: number
+    dayStartLabel: string
+    concertSeconds: number
+    isConcertTime: boolean
 }
 
 export function PersonCard({
-  person,
-  nowHHMM,
-  nowSeconds,
-  dayStartSeconds,
-  dayStartLabel,
-  concertSeconds,
-  isConcertTime,
+    person,
+    nowHHMM,
+    nowSeconds,
+    dayStartSeconds,
+    dayStartLabel,
+    concertSeconds,
+    isConcertTime,
 }: PersonCardProps) {
-  const parsedStart = person.startTime ? parseHHMM(person.startTime) : null
+    const parsedStart = person.startTime ? parseHHMM(person.startTime) : null
 
-  const hasValidStart = Boolean(person.startTime && parsedStart)
-  const isMissing = !person.startTime || !parsedStart
+    const hasValidStart = Boolean(person.startTime && parsedStart)
+    const isMissing = !person.startTime || !parsedStart
 
-  const startSeconds = parsedStart ? parsedStart.hours * 3600 + parsedStart.minutes * 60 : null
+    const startSeconds = parsedStart ? parsedStart.hours * 3600 + parsedStart.minutes * 60 : null
 
-  const startIsInFuture = startSeconds !== null && startSeconds > nowSeconds && !isConcertTime
+    const startIsInFuture = startSeconds !== null && startSeconds > nowSeconds && !isConcertTime
 
-  const isOnOffice = startSeconds !== null && nowSeconds >= startSeconds && !isConcertTime
+    const isOnOffice = startSeconds !== null && nowSeconds >= startSeconds && !isConcertTime
 
-  const showRangeText = !isConcertTime
+    const showRangeText = !isConcertTime
 
-  const rangeText = hasValidStart && person.startTime
-    ? `${person.startTime} – ${nowHHMM}`
-    : `HH:MM – ${nowHHMM}`
+    const rangeText = hasValidStart && person.startTime
+        ? `${person.startTime} - ${nowHHMM}`
+        : `HH:MM - ${nowHHMM}`
 
-  const endSeconds = Math.min(nowSeconds, concertSeconds)
-  const totalSeconds = startSeconds !== null ? Math.max(0, endSeconds - startSeconds) : 0
+    const endSeconds = Math.min(nowSeconds, concertSeconds)
+    const totalSeconds = startSeconds !== null ? Math.max(0, endSeconds - startSeconds) : 0
 
-  const officeNowSeconds = startSeconds !== null ? Math.max(0, Math.min(nowSeconds, concertSeconds) - startSeconds) : 0
+    const officeNowSeconds = startSeconds !== null ? Math.max(0, Math.min(nowSeconds, concertSeconds) - startSeconds) : 0
 
-  const dayDenom = Math.max(1, concertSeconds - dayStartSeconds)
-  const safeStartSeconds = startSeconds !== null ? Math.max(dayStartSeconds, startSeconds) : null
-  const unused = safeStartSeconds !== null
-    ? clamp01((safeStartSeconds - dayStartSeconds) / dayDenom)
-    : 1
+    const dayDenom = Math.max(1, concertSeconds - dayStartSeconds)
+    const safeStartSeconds = startSeconds !== null ? Math.max(dayStartSeconds, startSeconds) : null
+    const unused = safeStartSeconds !== null
+        ? clamp01((safeStartSeconds - dayStartSeconds) / dayDenom)
+        : 1
 
-  const active = safeStartSeconds !== null
-    ? clamp01((Math.min(nowSeconds, concertSeconds) - safeStartSeconds) / dayDenom)
-    : 0
+    const active = safeStartSeconds !== null
+        ? clamp01((Math.min(nowSeconds, concertSeconds) - safeStartSeconds) / dayDenom)
+        : 0
 
-  const showMarker = hasValidStart && safeStartSeconds !== null && safeStartSeconds > dayStartSeconds
-  const markerOffset = showMarker ? unused : undefined
-  const markerLabel = showMarker ? person.startTime ?? undefined : undefined
+    const showMarker = hasValidStart && safeStartSeconds !== null && safeStartSeconds > dayStartSeconds
+    const markerOffset = showMarker ? unused : undefined
+    const markerLabel = showMarker ? person.startTime ?? undefined : undefined
 
-  const endLabel = formatHHMM(
-    Math.floor(concertSeconds / 3600),
-    Math.floor((concertSeconds % 3600) / 60)
-  )
+    const endLabel = formatHHMM(
+        Math.floor(concertSeconds / 3600),
+        Math.floor((concertSeconds % 3600) / 60)
+    )
 
-  return (
-    <article className={styles.card}>
-      <header className={styles.header}>
-        <div className={styles.who}>
-          <div className={styles.emoji} aria-hidden="true">
-            {person.icon}
-          </div>
-          <div>
-            <div className={styles.name}>{person.name}</div>
-            <div className={styles.sub}>
-              {showRangeText ? rangeText : `${formatDuration(totalSeconds)}`}
+    return (
+        <article className={styles.card}>
+            <header className={styles.header}>
+                <div className={styles.who}>
+                    <div className={styles.emoji} aria-hidden="true">
+                        <person.icon />
+                    </div>
+
+                    <div className={styles.name}>{person.name}</div>
+                    <div className={styles.time}>
+                        <div className={styles.sub}>
+                            {showRangeText ? rangeText : `${formatDuration(totalSeconds)}`}
+                        </div>
+                        {!isConcertTime && isOnOffice && (
+                            <div className={styles.sub2}>Tid: {formatDuration(officeNowSeconds)}</div>
+                        )}
+                    </div>
+
+                </div>
+
+                <div className={styles.badges}>
+                    {startIsInFuture ? (
+                        <span className={styles.badgeWarn}>Starttid i fremtiden</span>
+                    ) : isMissing ? (
+                        <span className={styles.badgeOff}>Ikke kommet</span>
+                    ) : isOnOffice ? (
+                        <span className={styles.badgeOn}>På kontoret</span>
+                    ) : (
+                        <span className={styles.badgeOff}>Ikke kommet</span>
+                    )}
+                </div>
+            </header>
+
+            <ProgressBar
+                unused={unused}
+                active={active}
+                markerLabel={markerLabel}
+                markerOffset={markerOffset}
+                dayStartLabel={dayStartLabel}
+                endLabel={endLabel}
+                color={person.color}
+                label={`${person.name} progress`}
+                disabled={isMissing}
+            />
+
+            <div className={styles.footer}>
+                <span className={styles.mini}>
+                    Start: {isMissing ? 'ikke satt' : person.startTime}
+                </span>
+                <span className={styles.mini}>
+                    Nå: {nowHHMM}
+                </span>
+                <span className={styles.mini}>
+                    Slutt: {formatHHMM(Math.floor(concertSeconds / 3600), Math.floor((concertSeconds % 3600) / 60))}
+                </span>
             </div>
-            {!isConcertTime && isOnOffice && (
-              <div className={styles.sub2}>Tid på kontoret: {formatDuration(officeNowSeconds)}</div>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.badges}>
-          {startIsInFuture ? (
-            <span className={styles.badgeWarn}>Starttid i fremtiden</span>
-          ) : isMissing ? (
-            <span className={styles.badgeOff}>Ikke kommet</span>
-          ) : isOnOffice ? (
-            <span className={styles.badgeOn}>På kontoret</span>
-          ) : (
-            <span className={styles.badgeOff}>Ikke kommet</span>
-          )}
-        </div>
-      </header>
-
-      <ProgressBar
-        unused={unused}
-        active={active}
-        markerLabel={markerLabel}
-        markerOffset={markerOffset}
-        dayStartLabel={dayStartLabel}
-        endLabel={endLabel}
-        color={person.color}
-        label={`${person.name} progress`}
-        disabled={isMissing}
-      />
-
-      <div className={styles.footer}>
-        <span className={styles.mini}>
-          Start: {isMissing ? 'ikke satt' : person.startTime}
-        </span>
-        <span className={styles.mini}>
-          Nå: {nowHHMM}
-        </span>
-        <span className={styles.mini}>
-          Slutt: {formatHHMM(Math.floor(concertSeconds / 3600), Math.floor((concertSeconds % 3600) / 60))}
-        </span>
-      </div>
-    </article>
-  )
+        </article>
+    )
 }
 
 function clamp01(value: number): number {
-  return Math.max(0, Math.min(1, value))
+    return Math.max(0, Math.min(1, value))
 }
