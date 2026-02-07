@@ -46,7 +46,7 @@ export type ArtistInfo = {
 export const people: PersonConfig[] = [
   // Lucida-vennlige ikon-glyphs (tekst, ikke emoji)
   { name: 'Felix', startTime: '08:00', color: '#7C3AED', icon: Balloon },
-  { name: 'Chriz', startTime: null, color: '#06B6D4', icon: ChartScatter },
+  { name: 'Chriz', startTime: '12:23', color: '#06B6D4', icon: ChartScatter },
   { name: 'Viljen', startTime: '09:10', color: '#F97316', icon: Banana },
 ]
 
