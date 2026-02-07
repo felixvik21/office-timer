@@ -15,6 +15,7 @@
 .time {
   display: flex;
   gap: 24px;
+  align-items: baseline;
 }
 
 @media (orientation: portrait) {
@@ -43,6 +44,10 @@
   opacity: 0.35;
   pointer-events: none;
 }
+.card {
+    padding: 22px;
+    gap: 40px;
+  }
 
 .header {
   display: flex;

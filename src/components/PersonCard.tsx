@@ -78,7 +78,7 @@ export function PersonCard({
                             {showRangeText ? rangeText : `${formatDuration(totalSeconds)}`}
                         </div>
                         {!isConcertTime && isOnOffice && (
-                            <div className={styles.sub2}>Tid: {formatDuration(officeNowSeconds)}</div>
+                            <div className={styles.sub}>Tid: {formatDuration(officeNowSeconds)}</div>
                         )}
                     </div>
 
