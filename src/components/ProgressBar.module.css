@@ -1,0 +1,67 @@
+.wrap {
+  display: grid;
+  gap: 12px;
+}
+
+.track {
+  height: 22px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+@media (orientation: portrait) {
+  .track {
+    height: 28px;
+  }
+
+  .wrap {
+    gap: 14px;
+  }
+
+  .meta {
+    font-size: 14px;
+  }
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  transition: width 700ms ease;
+  box-shadow: 0 0 26px rgba(255, 255, 255, 0.18);
+}
+
+.wrap[data-disabled='true'] {
+  opacity: 0.72;
+}
+
+.wrap[data-disabled='true'] .track {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 10px,
+      rgba(255, 255, 255, 0.03) 10px,
+      rgba(255, 255, 255, 0.03) 20px
+    );
+  border-style: dashed;
+}
+
+.wrap[data-disabled='true'] .fill {
+  box-shadow: none;
+  transition: none;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.end {
+  letter-spacing: 0.08em;
+}
