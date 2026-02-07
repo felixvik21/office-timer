@@ -6,7 +6,7 @@ export const TIME_ZONE = 'Europe/Oslo'
 // Endre startTime her når de kommer.
 // - Sett til "HH:MM" når personen kommer (f.eks. "08:00")
 // - Sett til null hvis personen ikke har kommet enda
-export const concertTime = '21:30' as const
+export const concertTime = '18:00' as const
 
 // Baren viser alltid intervallet 08:00 → konsert.
 export const dayStartTime = '08:00' as const
@@ -24,7 +24,6 @@ export const schedule: ScheduleItem[] = [
   { label: 'Lunsj', start: '12:00', end: '13:00' },
   { label: 'Jobbe', start: '13:00', end: '17:00' },
   { label: 'Middag', start: '17:00', end: '18:00' },
-  { label: 'Vors', start: '18:00', end: '21:30' },
 ]
 
 export type PersonConfig = {

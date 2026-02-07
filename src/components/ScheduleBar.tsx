@@ -80,11 +80,6 @@ export function ScheduleBar({ nowSeconds }: { nowSeconds: number }) {
         <div className={styles.ticket}>
           <div className={styles.header}>
             <div className={styles.title}>Dagens plan</div>
-            <div className={styles.window}>
-              <span className={styles.time}>{dayStartTime}</span>
-              <span className={styles.sep}>→</span>
-              <span className={styles.time}>{concertTime}</span>
-            </div>
           </div>
 
           <div className={styles.trackWrap}>

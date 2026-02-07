@@ -16,7 +16,6 @@ export type PersonCardProps = {
 
 export function PersonCard({
     person,
-    nowHHMM,
     nowSeconds,
     dayStartSeconds,
     dayStartLabel,
@@ -33,15 +32,6 @@ export function PersonCard({
     const startIsInFuture = startSeconds !== null && startSeconds > nowSeconds && !isConcertTime
 
     const isOnOffice = startSeconds !== null && nowSeconds >= startSeconds && !isConcertTime
-
-    const showRangeText = !isConcertTime
-
-    const rangeText = hasValidStart && person.startTime
-        ? `${person.startTime} - ${nowHHMM}`
-        : `HH:MM - ${nowHHMM}`
-
-    const endSeconds = Math.min(nowSeconds, concertSeconds)
-    const totalSeconds = startSeconds !== null ? Math.max(0, endSeconds - startSeconds) : 0
 
     const officeNowSeconds = startSeconds !== null ? Math.max(0, Math.min(nowSeconds, concertSeconds) - startSeconds) : 0
 
@@ -71,17 +61,10 @@ export function PersonCard({
                     <div className={styles.emoji} aria-hidden="true">
                         <person.icon />
                     </div>
-
                     <div className={styles.name}>{person.name}</div>
-                    <div className={styles.time}>
-                        <div className={styles.sub}>
-                            {showRangeText ? rangeText : `${formatDuration(totalSeconds)}`}
-                        </div>
-                        {!isConcertTime && isOnOffice && (
-                            <div className={styles.sub}>Tid: {formatDuration(officeNowSeconds)}</div>
-                        )}
-                    </div>
-
+                    {!isConcertTime && isOnOffice && (
+                        <div className={styles.sub}>Tid: {formatDuration(officeNowSeconds)}</div>
+                    )}
                 </div>
 
                 <div className={styles.badges}>
@@ -108,18 +91,6 @@ export function PersonCard({
                 label={`${person.name} progress`}
                 disabled={isMissing}
             />
-
-            <div className={styles.footer}>
-                <span className={styles.mini}>
-                    Start: {isMissing ? 'ikke satt' : person.startTime}
-                </span>
-                <span className={styles.mini}>
-                    Nå: {nowHHMM}
-                </span>
-                <span className={styles.mini}>
-                    Slutt: {formatHHMM(Math.floor(concertSeconds / 3600), Math.floor((concertSeconds % 3600) / 60))}
-                </span>
-            </div>
         </article>
     )
 }
