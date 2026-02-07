@@ -23,6 +23,11 @@ export function ProgressBar({
 }) {
   const safeUnused = Math.max(0, Math.min(1, unused))
   const safeActive = Math.max(0, Math.min(1, active))
+
+  const remaining = Math.max(0, 1 - safeUnused)
+  const relativeProgress = remaining > 0 ? Math.max(0, Math.min(1, safeActive / remaining)) : 0
+  const relativeProgressPct = Math.round(relativeProgress * 100)
+
   const activeLeftPct = Math.round(safeUnused * 100)
   const activeWidthPct = Math.round(safeActive * 100)
   const markerPct = markerOffset === undefined ? null : Math.max(0, Math.min(1, markerOffset))
@@ -57,7 +62,7 @@ export function ProgressBar({
           
       <div className={styles.meta}>
         <span>{dayStartLabel}</span>
-        <span>{Math.round(activeWidthPct)}%</span>
+        <span>{relativeProgressPct}%</span>
         <span className={styles.end}>{endLabel}</span>
       </div>
     </div>
