@@ -7,7 +7,15 @@
     <title>kontor-timer</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="padding:16px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111;background:#fff;max-width:720px;margin:24px auto;border-radius:12px;border:1px solid rgba(0,0,0,0.12)">
+        <div style="font-weight:800;font-size:18px;">Kontor-timer laster…</div>
+        <div style="margin-top:6px;opacity:0.8;line-height:1.45">
+          Hvis siden blir stående her etter deploy, er det ofte feil <b>base-path</b> (GitHub Pages) som gjør at <code>/assets/*</code> får 404.
+          Sjekk Console/Network og se README for hvordan du setter <code>VITE_BASE</code> til <code>"/&lt;repo&gt;/"</code>.
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

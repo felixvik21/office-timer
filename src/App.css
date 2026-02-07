@@ -289,3 +289,36 @@
     font-size: 14px;
   }
 }
+
+/* Landscape (e.g. 1920x1080): use full width/height without changing portrait */
+@media (orientation: landscape) and (min-width: 1000px) {
+  .page {
+    max-width: none;
+    padding: 24px 44px 28px;
+  }
+
+  .top {
+    margin-bottom: 22px;
+  }
+
+  .brand h1 {
+    font-size: clamp(28px, 2.2vw, 44px);
+  }
+
+  .grid {
+    gap: 22px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .footer {
+    margin-top: auto;
+  }
+
+  .footerInner {
+    min-height: clamp(220px, 24svh, 360px);
+  }
+}

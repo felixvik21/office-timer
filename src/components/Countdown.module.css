@@ -40,3 +40,13 @@
     font-size: clamp(42px, 6.5vw, 72px);
   }
 }
+
+@media (orientation: landscape) and (min-width: 1000px) {
+  .wrap {
+    padding: 22px 24px 20px;
+  }
+
+  .big {
+    font-size: clamp(44px, 4.2vw, 78px);
+  }
+}

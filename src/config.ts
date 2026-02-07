@@ -23,7 +23,7 @@ export type ArtistInfo = {
 
 export const people: PersonConfig[] = [
   { name: 'Felix', startTime: '08:00', color: '#7C3AED', emoji: '🧃' },
-  { name: 'Chriz', startTime: null, color: '#06B6D4', emoji: '🎧' },
+  { name: 'Chriz', startTime: '09:10', color: '#06B6D4', emoji: '🎧' },
   { name: 'Viljen', startTime: null, color: '#F97316', emoji: '🕺' },
 ]
 
