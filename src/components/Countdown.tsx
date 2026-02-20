@@ -12,15 +12,15 @@ export function Countdown({
   if (isConcertTime) {
     return (
       <section className={styles.wrap}>
-        <h2 className={styles.title}>Countdown til konsert</h2>
-        <div className={styles.big}>Kos dere på konsert 🎫</div>
+        <h2 className={styles.title}>Countdown til EUROJACKPOT!</h2>
+        <div className={styles.big}>GRATULERER DU VANT! 🎫</div>
       </section>
     )
   }
 
   return (
     <section className={styles.wrap}>
-      <h2 className={styles.title}>Countdown til konsert</h2>
+      <h2 className={styles.title}>Countdown til EUROJACKPOT!</h2>
       <div className={styles.big}>{formatDurationHMS(secondsLeft)}</div>
     </section>
   )

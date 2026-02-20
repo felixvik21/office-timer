@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { TIME_ZONE, concertTime, dayStartTime, people, artists } from './config'
+import { TIME_ZONE, concertTime, dayStartTime, people/* , artists */ } from './config'
 import { getOsloNow, parseHHMM, secondsSinceMidnight } from './time'
 import { Countdown } from './components/Countdown'
 import { PersonCard } from './components/PersonCard'
@@ -64,7 +64,7 @@ function App() {
 
       <footer className="footer">
         <div className="footerInner">
-          <div className="footerTop">
+          {/* <div className="footerTop">
             <span className="footerBadge">Gjenfødt Kultur</span>
             <span className="footerText">tre40fire (support)</span>
             <span className="footerTiny">— husk ørepropper —</span>
@@ -93,7 +93,7 @@ function App() {
                 </div>
               </article>
             ))}
-          </div>
+          </div> */}
           <ScheduleBar nowSeconds={nowSeconds} />
         </div>
       </footer>

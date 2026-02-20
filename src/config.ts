@@ -6,7 +6,7 @@ export const TIME_ZONE = 'Europe/Oslo'
 // Endre startTime her når de kommer.
 // - Sett til "HH:MM" når personen kommer (f.eks. "08:00")
 // - Sett til null hvis personen ikke har kommet enda
-export const concertTime = '18:00' as const
+export const concertTime = '20:15' as const
 
 // Baren viser alltid intervallet 08:00 → konsert.
 export const dayStartTime = '08:00' as const
@@ -24,6 +24,7 @@ export const schedule: ScheduleItem[] = [
   { label: 'Lunsj', start: '12:00', end: '13:00' },
   { label: 'Jobbe', start: '13:00', end: '17:00' },
   { label: 'Middag', start: '17:00', end: '18:00' },
+  { label: 'Chilling', start: '18:00', end: '20:15' },
 ]
 
 export type PersonConfig = {
@@ -44,9 +45,9 @@ export type ArtistInfo = {
 
 export const people: PersonConfig[] = [
   // Lucida-vennlige ikon-glyphs (tekst, ikke emoji)
-  { name: 'Felix', startTime: '08:00', color: '#7C3AED', icon: Balloon },
+  { name: 'Felix', startTime: '19:00', color: '#7C3AED', icon: Balloon },
   { name: 'Chriz', startTime: '12:23', color: '#06B6D4', icon: ChartScatter },
-  { name: 'Viljen', startTime: '09:10', color: '#F97316', icon: Banana },
+  { name: 'Viljen', startTime: '10:00', color: '#F97316', icon: Banana },
 ]
 
 // Endre tekst/tall her hvis du vil (f.eks. månedlige lyttere).
