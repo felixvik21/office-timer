@@ -42,6 +42,21 @@ export function formatHHMMSS(hours: number, minutes: number, seconds: number): s
   return `${format2(hours)}:${format2(minutes)}:${format2(seconds)}`
 }
 
+export function formatDurationDHMS(totalSeconds: number): string {
+  const safe = Math.max(0, Math.floor(totalSeconds))
+  const days = Math.floor(safe / 86400)
+  const hours = Math.floor((safe % 86400) / 3600)
+  const minutes = Math.floor((safe % 3600) / 60)
+  const seconds = safe % 60
+
+  if (days <= 0) return formatHHMMSS(hours, minutes, seconds)
+  return `${days}d ${formatHHMMSS(hours, minutes, seconds)}`
+}
+
+export function formatYMD(year: number, month: number, day: number): string {
+  return `${String(year).padStart(4, '0')}-${format2(month)}-${format2(day)}`
+}
+
 export function formatDuration(totalSeconds: number): string {
   const safe = Math.max(0, Math.floor(totalSeconds))
   const hours = Math.floor(safe / 3600)
@@ -68,8 +83,7 @@ export type OsloNow = {
   seconds: number
 }
 
-export function getOsloNow(timeZone: string): OsloNow {
-  const date = new Date()
+export function getOsloNow(timeZone: string, date: Date = new Date()): OsloNow {
   const formatter = new Intl.DateTimeFormat('en-GB', {
     timeZone,
     year: 'numeric',

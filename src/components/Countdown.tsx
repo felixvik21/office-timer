@@ -1,27 +1,32 @@
 import styles from './Countdown.module.css'
-import { formatDurationHMS } from '../time'
+import { formatDurationDHMS } from '../time'
 
 export function Countdown({
+  title,
   secondsLeft,
-  isConcertTime,
+  isEventTime,
+  label,
 }: {
+  title: string
   secondsLeft: number
-  isConcertTime: boolean
-  concertTime: string
+  isEventTime: boolean
+  label?: string
 }) {
-  if (isConcertTime) {
+  if (isEventTime) {
     return (
       <section className={styles.wrap}>
-        <h2 className={styles.title}>Countdown til EUROJACKPOT!</h2>
-        <div className={styles.big}>GRATULERER DU VANT! 🎫</div>
+        <h2 className={styles.title}>{title}</h2>
+        <div className={styles.big}>DET ER VORS.</div>
+        {label && <div className={styles.label}>{label}</div>}
       </section>
     )
   }
 
   return (
     <section className={styles.wrap}>
-      <h2 className={styles.title}>Countdown til EUROJACKPOT!</h2>
-      <div className={styles.big}>{formatDurationHMS(secondsLeft)}</div>
+      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.big}>{formatDurationDHMS(secondsLeft)}</div>
+      {label && <div className={styles.label}>{label}</div>}
     </section>
   )
 }

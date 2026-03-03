@@ -1,6 +1,6 @@
-# Kontor-timer (kun for i dag)
+# Vors-countdown (ukeplan)
 
-En liten, statisk “one-day” nettside som viser hvor lenge Felix, Chriz og Viljen har vært på kontoret i dag, pluss en stor countdown til konsert.
+En liten, statisk nettside som teller ned til **Helga Singsaker Vors** (6.3.26), og viser en **ukesplan delt inn i dager** (nedtelling starter mandag 2.3.26).
 
 ## Kjør lokalt
 
@@ -34,14 +34,15 @@ VITE_BASE: /${{ github.event.repository.name }}/
 
 Hvis du deployer manuelt eller repo-navnet er annerledes, sett `VITE_BASE` til riktig path.
 
-## Endre starttider
+## Endre event/ukeplan
 
-Åpne `src/config.ts` og endre `people[].startTime` når folk kommer.
+Åpne `src/config.ts` og juster:
 
-- `startTime: "08:00"` → personen har kommet
-- `startTime: null` → personen har ikke kommet (viser “HH:MM”)
+- `EVENT_START_ISO` (starttidspunkt for vors)
+- `COUNTDOWN_START_ISO` (når nedtellingen/uka starter)
+- `weekPlan` (seksjoner per dag)
 
-Konsert-tid er alltid `21:30` og kan også endres i samme fil (om du må).
+Tips: `EVENT_START_ISO` bruker eksplisitt timezone-offset (f.eks. `+01:00`) for å være robust hvis skjermen står i feil timezone.
 
 ## Notater
 

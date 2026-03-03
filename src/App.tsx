@@ -1,33 +1,32 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { TIME_ZONE, concertTime, dayStartTime, people/* , artists */ } from './config'
-import { getOsloNow, parseHHMM, secondsSinceMidnight } from './time'
+import { COUNTDOWN_START_ISO, EVENT_START_ISO, EVENT_TITLE, TIME_ZONE } from './config'
+import { format2, formatYMD, getOsloNow } from './time'
 import { Countdown } from './components/Countdown'
-import { PersonCard } from './components/PersonCard'
 import { Waves } from "lucide-react"
-import { ScheduleBar } from './components/ScheduleBar'
+import { WeekPlan } from './components/WeekPlan.tsx'
+import { VorsFun } from './components/VorsFun.tsx'
 
 function App() {
-  const [, setTick] = useState(0)
+  const [nowMs, setNowMs] = useState(() => Date.now())
 
   useEffect(() => {
-    const id = window.setInterval(() => setTick((v) => v + 1), 1000)
+    const id = window.setInterval(() => setNowMs(Date.now()), 1000)
     return () => window.clearInterval(id)
   }, [])
 
-  const now = getOsloNow(TIME_ZONE)
+  const now = getOsloNow(TIME_ZONE, new Date(nowMs))
 
-  const nowSeconds = secondsSinceMidnight(now)
-  const nowHHMM = `${String(now.hours).padStart(2, '0')}:${String(now.minutes).padStart(2, '0')}`
+  const nowDate = `${format2(now.day)}.${format2(now.month)}.${String(now.year).slice(-2)}`
+  const todayKey = formatYMD(now.year, now.month, now.day)
 
-  const concertParsed = parseHHMM(concertTime)
-  const concertSeconds = concertParsed ? concertParsed.hours * 3600 + concertParsed.minutes * 60 : 21 * 3600 + 30 * 60
+  const eventMs = Date.parse(EVENT_START_ISO)
+  const countdownStartMs = Date.parse(COUNTDOWN_START_ISO)
 
-  const dayStartParsed = parseHHMM(dayStartTime)
-  const dayStartSeconds = dayStartParsed ? dayStartParsed.hours * 3600 + dayStartParsed.minutes * 60 : 8 * 3600
+  const secondsLeft = Math.max(0, Math.floor((eventMs - nowMs) / 1000))
+  const isEventTime = nowMs >= eventMs
 
-  const isConcertTime = nowSeconds >= concertSeconds
-  const secondsLeft = Math.max(0, concertSeconds - nowSeconds)
+  const eventLabel = `Starter 06.03.26 19:00 • Nedtelling siden 02.03.26`
 
   return (
     <div className="page">
@@ -35,66 +34,40 @@ function App() {
 
       <header className="top">
         <div className="brand">
-          <div className="kicker">Kontor-timer</div>
+          <div className="kicker">{EVENT_TITLE}</div>
           <h1>
-            I dag • {nowHHMM} • <span className="tz">{TIME_ZONE}</span>
+            I dag • {nowDate} • <span className="tz">{TIME_ZONE}</span>
           </h1>
         </div>
-        <div className="pill"><Waves size={18}/> One-day vibe</div>
+        <div className="pill"><Waves size={18}/> Uke 10 vibe</div>
       </header>
 
       <main className="grid">
-        <Countdown secondsLeft={secondsLeft} isConcertTime={isConcertTime} concertTime={concertTime} />
+        <Countdown
+          title={`Countdown til ${EVENT_TITLE}`}
+          secondsLeft={secondsLeft}
+          isEventTime={isEventTime}
+          label={eventLabel}
+        />
 
-        <section className="cards">
-          {people.map((person) => (
-            <PersonCard
-              key={person.name}
-              person={person}
-              nowHHMM={nowHHMM}
-              nowSeconds={nowSeconds}
-              dayStartSeconds={dayStartSeconds}
-              dayStartLabel={dayStartTime}
-              concertSeconds={concertSeconds}
-              isConcertTime={isConcertTime}
-            />
-          ))}
-        </section>
+        <VorsFun
+          nowMs={nowMs}
+          countdownStartMs={countdownStartMs}
+          eventMs={eventMs}
+          secondsLeft={secondsLeft}
+          isEventTime={isEventTime}
+        />
+
+        <WeekPlan todayKey={todayKey} />
       </main>
 
       <footer className="footer">
         <div className="footerInner">
-          {/* <div className="footerTop">
-            <span className="footerBadge">Gjenfødt Kultur</span>
-            <span className="footerText">tre40fire (support)</span>
-            <span className="footerTiny">— husk ørepropper —</span>
+          <div className="footerTop">
+            <span className="footerBadge">Ukesplan</span>
+            <span className="footerText">Mandag 02.03 → Fredag 06.03</span>
+            <span className="footerTiny">— ingen kontortid, bare vors-fokus —</span>
           </div>
-
-          <div className="lineup" aria-label="Lineup">
-            {artists.map((artist) => (
-              <article key={artist.name} className="artistCard">
-                <div className="artistTop">
-                  <div className="artistEmoji" aria-hidden="true"><artist.icon /></div>
-                  <div className="artistMeta">
-                    <div className="artistName">{artist.name}</div>
-                    <div className="artistRole">{artist.role}</div>
-                  </div>
-                  <div className="artistStat">
-                    <div className="artistStatLabel">Månedlige lyttere</div>
-                    <div className="artistStatValue">{artist.listeners ?? '— (sett i config)'}</div>
-                  </div>
-                </div>
-
-                <div className="artistBlurb">{artist.blurb}</div>
-
-                <div className="artistHighlights">
-                  <div className="artistChip">{artist.highlights[0]}</div>
-                  <div className="artistChip">{artist.highlights[1]}</div>
-                </div>
-              </article>
-            ))}
-          </div> */}
-          <ScheduleBar nowSeconds={nowSeconds} />
         </div>
       </footer>
     </div>
