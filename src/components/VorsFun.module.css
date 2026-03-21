@@ -1,29 +1,28 @@
 .wrap {
-  border-radius: 18px;
+  border-radius: 0;
   padding: 18px 18px 16px;
-  background:
-    radial-gradient(1200px 300px at 20% 0%, rgba(255, 255, 255, 0.07), transparent 60%),
-    rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--mc-panel-dark);
+  border: none;
+  box-shadow: var(--mc-bevel-in);
 }
 
 .title {
   margin: 0;
-  font-size: 14px;
-  letter-spacing: 0.16em;
+  font-size: 8px;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--mc-yellow);
 }
 
 .oracle {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.84);
+  margin-top: 12px;
+  font-size: 8px;
+  line-height: 1.8;
+  color: var(--mc-gray);
 }
 
 .bar {
-  margin-top: 14px;
+  margin-top: 18px;
 }
 
 @media (orientation: portrait) {

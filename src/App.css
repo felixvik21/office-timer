@@ -18,31 +18,31 @@
 
 .brand h1 {
   margin: 6px 0 0;
-  font-size: clamp(22px, 3.2vw, 36px);
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  line-height: 1.1;
+  font-size: clamp(10px, 1.6vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.8;
 }
 
 .kicker {
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 9px;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--mc-yellow);
 }
 
 .tz {
-  font-weight: 700;
   opacity: 0.7;
 }
 
 .pill {
-  border-radius: 999px;
+  border-radius: 0;
   padding: 8px 12px;
-  font-size: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.84);
+  font-size: 8px;
+  border: none;
+  background: var(--mc-panel-dark);
+  box-shadow: var(--mc-bevel-in);
+  color: var(--mc-white);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -66,10 +66,11 @@
 }
 
 .footerInner {
-  border-radius: 18px;
+  border-radius: 0;
   padding: 16px 18px;
-  border: 1px dashed rgba(255, 255, 255, 0.22);
-  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  background: var(--mc-panel-dark);
+  box-shadow: var(--mc-bevel-in);
   display: grid;
   gap: 10px;
 }
@@ -84,112 +85,26 @@
 
 .footerBadge {
   padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  border-radius: 0;
+  background: var(--mc-panel-mid);
+  border: none;
+  box-shadow: var(--mc-bevel-out);
+  font-weight: 400;
+  letter-spacing: 0;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 7px;
+  color: #1D1D1D;
 }
 
 .footerText {
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 7px;
+  font-weight: 400;
+  color: var(--mc-white);
 }
 
 .footerTiny {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.lineup {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.artistCard {
-  border-radius: 16px;
-  padding: 14px 14px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background:
-    radial-gradient(900px 250px at 10% 0%, rgba(255, 255, 255, 0.06), transparent 55%),
-    rgba(255, 255, 255, 0.04);
-  position: relative;
-  overflow: hidden;
-}
-
-.artistTop {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-}
-
-.artistEmoji {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: 22px;
-  font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, system-ui;
-}
-
-.artistName {
-  font-weight: 900;
-  letter-spacing: 0.02em;
-}
-
-.artistRole {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.artistStat {
-  text-align: right;
-}
-
-.artistStatLabel {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.artistStatValue {
-  font-size: 12px;
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.artistBlurb {
-  margin-top: 10px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.76);
-  position: relative;
-}
-
-.artistHighlights {
-  margin-top: 10px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-.artistChip {
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(0, 0, 0, 0.18);
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 6px;
+  color: var(--mc-gray);
 }
 
 .confetti {
@@ -197,14 +112,7 @@
   inset: -60px -40px auto -40px;
   height: 240px;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 12% 30%, rgba(124, 58, 237, 0.18), transparent 45%),
-    radial-gradient(circle at 55% 12%, rgba(6, 182, 212, 0.14), transparent 46%),
-    radial-gradient(circle at 86% 45%, rgba(249, 115, 22, 0.12), transparent 48%);
-  filter: blur(10px);
-  opacity: 0.55;
-  -webkit-mask-image: radial-gradient(closest-side at 50% 0%, rgba(0, 0, 0, 1), transparent 70%);
-  mask-image: radial-gradient(closest-side at 50% 0%, rgba(0, 0, 0, 1), transparent 70%);
+  background: transparent;
 }
 
 @media (min-width: 860px) {
@@ -254,32 +162,17 @@
   }
 
   .footerBadge {
-    font-size: 13px;
+    font-size: 7px;
     padding: 8px 12px;
   }
 
   .footerText {
-    font-size: 16px;
+    font-size: 8px;
   }
 
   .footerInner {
     min-height: clamp(240px, 28svh, 420px);
     align-content: center;
-  }
-
-  .lineup {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .artistEmoji {
-    width: 52px;
-    height: 52px;
-    font-size: 26px;
-  }
-
-  .artistBlurb {
-    font-size: 14px;
   }
 }
 
@@ -295,7 +188,7 @@
   }
 
   .brand h1 {
-    font-size: clamp(28px, 2.2vw, 44px);
+    font-size: clamp(12px, 1.4vw, 20px);
   }
 
   .grid {

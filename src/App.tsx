@@ -39,7 +39,7 @@ function App() {
             I dag • {nowDate} • <span className="tz">{TIME_ZONE}</span>
           </h1>
         </div>
-        <div className="pill"><Waves size={18}/> Uke 10 vibe</div>
+        <div className="pill"><Waves size={14}/> Uke 10 vibe</div>
       </header>
 
       <main className="grid">

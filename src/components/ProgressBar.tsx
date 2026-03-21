@@ -54,7 +54,7 @@ export function ProgressBar({
             style={{
               left: `${activeLeftPct}%`,
               width: `${activeWidthPct}%`,
-              background: disabled ? 'rgba(255,255,255,0.12)' : color,
+              backgroundColor: disabled ? 'rgba(255,255,255,0.12)' : color,
             }}
           />
         </div>

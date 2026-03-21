@@ -77,4 +77,4 @@ export const weekPlan: WeekPlanDay[] = [
 ]
 
 // Rebruker en eksisterende “palette”-farge fra prosjektet.
-export const VORS_ACCENT = '#F97316' as const
+export const VORS_ACCENT = '#80FF20' as const
