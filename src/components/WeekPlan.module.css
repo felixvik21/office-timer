@@ -1,83 +1,54 @@
 .wrap {
   border-radius: 0;
-  padding: 18px 18px 16px;
-  background: var(--mc-panel-light);
+  padding: 0;
+  background: transparent;
   border: none;
-  box-shadow: var(--mc-bevel-out);
+  box-shadow: none;
 }
 
 .title {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   font-size: 9px;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: #3F3F3F;
+  color: var(--mc-gray);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
+/* Én dag – korten er usynlig, bare listen teller */
 .grid {
-  display: grid;
-  gap: 14px;
-}
-
-@media (min-width: 860px) {
-  .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 620px) and (max-width: 859px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  display: block;
 }
 
 .card {
-  border-radius: 0;
-  padding: 12px 12px 10px;
+  background: transparent;
   border: none;
-  background: var(--mc-panel-mid);
-  box-shadow: var(--mc-bevel-in);
+  box-shadow: none;
+  padding: 0;
 }
 
-.card[data-today='true'] {
-  background: var(--mc-panel-dark);
-  box-shadow: var(--mc-bevel-in);
-  border-top: 3px solid var(--mc-xp-fill);
-}
-
+/* Dag-header vises som en liten seksjonstittel */
 .header {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .day {
-  font-weight: 400;
   font-size: 9px;
-  letter-spacing: 0;
-  color: #1D1D1D;
-}
-
-.card[data-today='true'] .day {
-  color: var(--mc-white);
+  color: var(--mc-yellow);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7);
 }
 
 .date {
   font-size: 6px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.55);
-  white-space: nowrap;
-}
-
-.card[data-today='true'] .date {
   color: var(--mc-gray);
 }
 
+/* Hvert item = en full Minecraft-menyknapp */
 .list {
-  margin: 10px 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
@@ -86,40 +57,45 @@
 
 .item {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 8px;
-  align-items: start;
-  padding: 4px 6px;
-  background: rgba(0, 0, 0, 0.12);
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px -1px 0 rgba(255, 255, 255, 0.15);
+  grid-template-columns: 9ch 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--mc-panel-mid);
+  box-shadow:
+    inset 2px 2px 0 #C0C0C0,
+    inset -2px -2px 0 #404040,
+    0 4px 0 rgba(0, 0, 0, 0.55);
+  min-height: 44px;
 }
 
 .time {
-  font-size: 6px;
+  font-size: 7px;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: uppercase;
   color: var(--mc-xp-fill);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7);
   white-space: nowrap;
 }
 
 .label {
-  font-size: 7px;
-  line-height: 1.6;
-  color: rgba(0, 0, 0, 0.8);
+  font-size: 8px;
+  line-height: 1.5;
+  color: var(--mc-white);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
-.card[data-today='true'] .label {
-  color: var(--mc-gray);
+/* I landscape: to kolonner med knapper, som Minecraft-menyen */
+@media (orientation: landscape) and (min-width: 860px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (orientation: portrait) {
-  .wrap {
-    padding: 22px 20px 20px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+  .item {
+    padding: 14px 16px;
+    min-height: 52px;
   }
 }

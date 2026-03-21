@@ -1,9 +1,13 @@
 .wrap {
   border-radius: 0;
   padding: 18px 18px 16px;
-  background: var(--mc-panel-dark);
+  background: var(--mc-panel-mid);
   border: none;
-  box-shadow: var(--mc-bevel-in);
+  /* Hevet Minecraft-knapp: lys øverst/venstre, mørkt nederst/høyre + drop-shadow */
+  box-shadow:
+    inset 2px 2px 0 #C0C0C0,
+    inset -2px -2px 0 #404040,
+    0 5px 0 rgba(0, 0, 0, 0.55);
 }
 
 .title {
@@ -11,7 +15,8 @@
   font-size: 8px;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--mc-gray);
+  color: var(--mc-white);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .big {
@@ -27,7 +32,8 @@
 .label {
   margin-top: 12px;
   font-size: 7px;
-  color: var(--mc-gray);
+  color: var(--mc-white);
+  opacity: 0.7;
   line-height: 1.8;
 }
 

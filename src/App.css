@@ -51,6 +51,11 @@
 }
 
 /* Gul, skrå "vors-edition!" – akkurat som "Omnipotent!" i Minecraft-menyen */
+@keyframes mcSplash {
+  0%, 100% { transform: rotate(-8deg) translate(6px, -6px) scale(1);    }
+  50%       { transform: rotate(-8deg) translate(6px, -6px) scale(1.22); }
+}
+
 .mcEditionTag {
   font-family: var(--mc-font);
   font-size: clamp(11px, 2.8vw, 24px);
@@ -59,8 +64,7 @@
     2px 2px 0 rgba(0, 0, 0, 0.9),
     -1px -1px 0 rgba(0, 0, 0, 0.5);
   display: inline-block;
-  transform: rotate(-8deg) translate(6px, -6px);
-  transform-origin: center;
+  animation: mcSplash 1.4s ease-in-out infinite;
 }
 
 .mcDateLine {
