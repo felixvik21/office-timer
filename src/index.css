@@ -36,7 +36,21 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
-  background: var(--mc-void);
+  /* Minecraft panorama-inspirert bakgrunn: mørk nattehimmel → rødlilla horisont → mørk mark */
+  background:
+    radial-gradient(ellipse 140% 100% at 50% 50%, transparent 10%, rgba(0,0,0,0.68) 100%),
+    linear-gradient(
+      to bottom,
+      #06091a 0%,
+      #0c1230 15%,
+      #1a0e25 35%,
+      #260e06 48%,
+      #180a00 62%,
+      #0d0700 80%,
+      #070400 100%
+    );
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 #root {

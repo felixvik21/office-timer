@@ -16,7 +16,7 @@ export function Countdown({
     return (
       <section className={styles.wrap}>
         <h2 className={styles.title}>{title}</h2>
-        <div className={styles.big}>DET ER VORS.</div>
+        <div className={styles.big}>DER GIKK DRAKEN.</div>
         {label && <div className={styles.label}>{label}</div>}
       </section>
     )

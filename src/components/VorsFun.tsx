@@ -9,42 +9,53 @@ function pickOracleLine(secondsLeft: number, nowMs: number): string {
   const hoursLeft = Math.floor(secondsLeft / 3600)
 
   const pools: string[][] = [
+    // Tidlig fase – samle ressurser og overleve
     [
-      'Prognose: 93% sjanse for at noen sier “vi tar det rolig i kveld”.',
-      'Vors-fakta: “bare én” er en fabel (som drager).',
-      'Husk: ansvar er en myte fra HR.',
-      'Dette er ikke en nedtelling. Det er en nedtrapping av kontroll.',
-      'Vors-energi kan ikke måles i watt, bare i volum.',
+      'Noen sier “vi samler bare litt ressurser”. Det varer 2 timer.',
+      'Husker du å lage en seng? Nei. Du husker det etter at du dør.',
+      'Oppgave 1: finn tre. Oppgave 2: mer tre. Oppgave 3: MER TRE.',
+      'Noen har allerede gravd rett ned. De er ikke lenger med oss.',
+      'Noen bygger et hus med glassvinduer. Prioriteringer.',
     ],
+    // Nether-fasen
     [
-      'Tipset: legg fram klær nå. Du kommer til å hate deg selv senere.',
-      'Hvis du begynner å “rydde litt”… stopp. Det er en felle.',
-      'Oppdrag: finn høyttaleren (og dens ladekabel, ikke vær en klovn).',
-      'Når du sier “jeg kommer om 5”, mener du “jeg kommer i morgen”.',
+      'Ingen har laget blaze rods ennå. Alle vet det. Ingen sier det.',
+      'Nether-porten er bygd. Ingen vil gå inn. “Du går først.”',
+      'Noen er strandet i Netheret uten portal. Klassikeren.',
+      '”Vent, jeg trenger bare litt mer obsidian.” — noen, i evigheten.',
+      'Noen prøver å bygge hus i Netheret. Av tre. Oppe ved lava.',
     ],
+    // Etter Nether – finne strongholden
     [
-      'Nå: for-hydrer. Ikke diskuter. Bare gjør det.',
-      'Nå: send én melding som inneholder ordet “vibe”. Ferdig.',
-      'Nå: øv på å late som du har sovet 8 timer.',
-      'Nå: ikke start et nytt prosjekt. (Du kommer til å.)',
+      'Eyes of Ender kastet. En pekte ned. “Den liker ikke oss.”',
+      'Strongholden er funnet. Alle er tomme for mat. Selvfølgelig.',
+      '”Trenger vi egentlig å ta draken i dag?” — personen med full inventory.',
+      'Noen har fortsatt tre-sverd. Det er for sent å si noe.',
+      'Portalen mangler 4 frames. Hvem brukte opp alle pearls? Ingen vet.',
     ],
+    // Inne i The End – ødelegge crystals
     [
-      'SISTE TIMER: alle beslutninger tas med hjertet. Og litt med kaos.',
-      'SISTE TIMER: du trenger ikke flere planer. Du trenger en taxi.',
-      'SISTE TIMER: “jeg skal bare dusje” er starten på en saga.',
+      'End-portalen er aktivert. Noen prøver å sove i The End. RIP.',
+      'Første end crystal nede. Ingen vet hvordan man tar de andre.',
+      'Draken healer. Noen skyter mot den med en stein-pil.',
+      '”HOLD DEG UNNA HULLET” — alle, til ingen nytte.',
+      'Noen falt i hullet. Vi fortsetter. Det er slik det er.',
     ],
+    // Siste kamp mot draken
     [
-      'SISTE MINUTTER: finn nøkler, legitimasjon, og en siste rest av verdighet.',
-      'SISTE MINUTTER: IKKE sett deg ned. Da er du ferdig.',
-      'SISTE MINUTTER: alle er “på vei”. Ingen er på vei.',
+      'SISTE FASE: draken på det midtre tårnet. Alt eller ingenting.',
+      'SISTE FASE: noen falt ned i hullet igjen. Vi fortsetter uten dem.',
+      'SISTE FASE: en pil treffer draken. En annen treffer en lagkamerat.',
+      'SISTE FASE: draken er nede til 10%! ...og healer. Selvfølgelig.',
+      'SISTE FASE: “JEG HAR DEN! JEG HAR CRYSTALEN!” (det hjalp ikke)',
     ],
   ]
 
   let pool = pools[0]
-  if (hoursLeft <= 48) pool = pools[1]
-  if (hoursLeft <= 18) pool = pools[2]
-  if (hoursLeft <= 6) pool = pools[3]
-  if (minutesLeft <= 45) pool = pools[4]
+  if (hoursLeft <= 3) pool = pools[1]
+  if (hoursLeft <= 2) pool = pools[2]
+  if (hoursLeft <= 1) pool = pools[3]
+  if (minutesLeft <= 30) pool = pools[4]
 
   // Deterministisk “random” som bytter linje omtrent hvert 10. sekund.
   const t = Math.floor(nowMs / 10_000)
@@ -70,23 +81,23 @@ export function VorsFun({
   const progress = clamp(elapsed / total, 0, 1)
 
   const oracle = useMemo(() => {
-    if (isEventTime) return 'Orakelet: du er der. Ikke gjør det rart (du gjør det rart).'
+    if (isEventTime) return 'Draken er død. Noen falt i hullet på slutten. Det er slik det alltid er.'
     return pickOracleLine(secondsLeft, nowMs)
   }, [isEventTime, nowMs, secondsLeft])
 
   return (
-    <section className={styles.wrap} aria-label="Vors-o-meter">
-      <h2 className={styles.title}>Vors-o-meter</h2>
+    <section className={styles.wrap} aria-label="Drage-o-meter">
+      <h2 className={styles.title}>Drage-o-meter</h2>
       <div className={styles.oracle}>{oracle}</div>
 
       <div className={styles.bar}>
         <ProgressBar
           unused={0}
           active={progress}
-          dayStartLabel="Start 02.03"
-          endLabel="Vors"
+          dayStartLabel="Start 19:00"
+          endLabel="Dragen"
           color={VORS_ACCENT}
-          label="Vors progress"
+          label="Dragon progress"
           disabled={false}
         />
       </div>

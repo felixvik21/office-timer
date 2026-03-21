@@ -10,8 +10,8 @@ function formatDDMM(date: string): string {
 
 export function WeekPlan({ todayKey }: { todayKey: string }) {
   return (
-    <section className={styles.wrap} aria-label="Ukens plan">
-      <h2 className={styles.title}>Ukens plan</h2>
+    <section className={styles.wrap} aria-label="Kveldsprogram">
+      <h2 className={styles.title}>Kveldsprogram</h2>
 
       <div className={styles.grid}>
         {weekPlan.map((day) => {

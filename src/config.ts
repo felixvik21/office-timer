@@ -1,13 +1,13 @@
 export const TIME_ZONE = 'Europe/Oslo'
 
-// Budapest med webkom – flyet letter 13.3.26 kl. 15:05
+// Minecraft-kveld – slå Ender-draken 21.3.26 kl. 23:25
 // NB: ISO med eksplisitt offset gjør at countdown blir riktig selv om skjermen står i feil timezone.
-// (13. mars 2026 er CET, altså +01:00.)
-export const EVENT_TITLE = 'Budapest med webkom' as const
-export const EVENT_START_ISO = '2026-03-13T15:05:00+01:00' as const
+// (21. mars 2026 er CET, altså +01:00.)
+export const EVENT_TITLE = 'Slå dragen' as const
+export const EVENT_START_ISO = '2026-03-21T23:25:00+01:00' as const
 
-// Nedtellingen starter mandag 9.3.26.
-export const COUNTDOWN_START_ISO = '2026-03-09T08:00:00+01:00' as const
+// Nedtellingen starter 19:00 samme kveld.
+export const COUNTDOWN_START_ISO = '2026-03-21T19:00:00+01:00' as const
 
 export type WeekPlanItem = {
   label: string
@@ -22,56 +22,21 @@ export type WeekPlanDay = {
   items: WeekPlanItem[]
 }
 
-// Ukens plan (seksjoner delt inn i dager) – uke som leder opp til Budapest.
+// Kveldsplan – veien til å slå Ender-draken.
 export const weekPlan: WeekPlanDay[] = [
   {
-    date: '2026-03-09',
-    dayLabel: 'Mandag',
+    date: '2026-03-21',
+    dayLabel: 'Lørdag',
     items: [
-      { label: 'Jobb (med Budapest i tankene)', start: '08:00', end: '12:00' },
-      { label: 'Lunsj + Google Maps: Budapest', start: '12:00', end: '13:00' },
-      { label: 'Jobb (produktiv, lover)', start: '13:00', end: '16:00' },
-      { label: 'Pakkeliste runde 1 (urealistisk)', start: '20:00', end: '21:00' },
-    ],
-  },
-  {
-    date: '2026-03-10',
-    dayLabel: 'Tirsdag',
-    items: [
-      { label: 'Jobb (halvparten av hodet her)', start: '08:00', end: '12:00' },
-      { label: 'Research: ruin bars vs. budsjett', start: '12:00', end: '13:00' },
-      { label: 'Jobb (den andre halvparten)', start: '13:00', end: '16:00' },
-      { label: 'Valutaveksling (for syns skyld)', start: '16:00', end: '17:00' },
-    ],
-  },
-  {
-    date: '2026-03-11',
-    dayLabel: 'Onsdag',
-    items: [
-      { label: 'Jobb (siste møter, lover)', start: '08:00', end: '14:00' },
-      { label: 'Webkom-brief: Budapest-regler', start: '14:00', end: '15:00' },
-      { label: 'Pakkeliste runde 2 (realistisk)', start: '15:00', end: '17:00' },
-      { label: 'Legg deg tidlig (lol)', start: '22:00', end: '23:00' },
-    ],
-  },
-  {
-    date: '2026-03-12',
-    dayLabel: 'Torsdag',
-    items: [
-      { label: 'Jobb (out of office satt)', start: '08:00', end: '12:00' },
-      { label: 'Lunsj + sjekk flytider 17 ganger', start: '12:00', end: '13:00' },
-      { label: 'Pakk sekken (endelig)', start: '16:00', end: '18:00' },
-      { label: 'Boardingkort, pass, panikk', start: '20:00', end: '21:00' },
-    ],
-  },
-  {
-    date: '2026-03-13',
-    dayLabel: 'Fredag',
-    items: [
-      { label: 'Morgenstell (superhelt-tempo)', start: '08:00', end: '09:00' },
-      { label: 'Siste sjekk: ladere, pass, vibes', start: '09:00', end: '10:00' },
-      { label: 'Til Gardermoen!', start: '11:00', end: '13:00' },
-      { label: 'BUDAPEST', start: '15:05', end: '15:05' },
+      { label: 'Logg inn. Noen glemmer å lage seng. Det er dem.', start: '19:00', end: '19:30' },
+      { label: 'Samle ressurser. Noen graver rett ned. RIP.', start: '19:30', end: '20:00' },
+      { label: 'Nether-ekspedisjon. Bygg portal feil. Bygg om.', start: '20:00', end: '20:45' },
+      { label: 'Blaze rods! (etter 3 dødsfall i festningen)', start: '20:45', end: '21:15' },
+      { label: 'Kast Eyes of Ender. En peker ned. Klassikeren.', start: '21:15', end: '21:45' },
+      { label: 'Strongholden funnet. Alle er tomme for mat.', start: '21:45', end: '22:15' },
+      { label: 'Aktiver End-portalen. Noen prøver å sove der. RIP.', start: '22:15', end: '22:40' },
+      { label: 'Ødelegg end crystals. Noen skyter med stein-pil.', start: '22:40', end: '23:10' },
+      { label: 'FIGHT THE DRAGON', start: '23:10', end: '23:25' },
     ],
   },
 ]

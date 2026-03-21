@@ -3,7 +3,6 @@ import './App.css'
 import { COUNTDOWN_START_ISO, EVENT_START_ISO, EVENT_TITLE, TIME_ZONE } from './config'
 import { format2, formatYMD, getOsloNow } from './time'
 import { Countdown } from './components/Countdown'
-import { Waves } from "lucide-react"
 import { WeekPlan } from './components/WeekPlan.tsx'
 import { VorsFun } from './components/VorsFun.tsx'
 
@@ -26,20 +25,17 @@ function App() {
   const secondsLeft = Math.max(0, Math.floor((eventMs - nowMs) / 1000))
   const isEventTime = nowMs >= eventMs
 
-  const eventLabel = `Starter 06.03.26 19:00 • Nedtelling siden 02.03.26`
+  const eventLabel = `Nedtelling fra 19:00 • Draken faller 23:25`
 
   return (
     <div className="page">
-      <div className="confetti" aria-hidden="true" />
-
-      <header className="top">
-        <div className="brand">
-          <div className="kicker">{EVENT_TITLE}</div>
-          <h1>
-            I dag • {nowDate} • <span className="tz">{TIME_ZONE}</span>
-          </h1>
+      <header className="mcTitle">
+        <h1 className="mcLogo">WEBKOM</h1>
+        <div className="mcEditionRow">
+          <span className="mcEditionMain">Java Edition</span>
+          <span className="mcEditionTag">vors-edition!</span>
         </div>
-        <div className="pill"><Waves size={14}/> Uke 10 vibe</div>
+        <p className="mcDateLine">{EVENT_TITLE} · {nowDate} · <span className="tz">{TIME_ZONE}</span></p>
       </header>
 
       <main className="grid">
@@ -64,9 +60,9 @@ function App() {
       <footer className="footer">
         <div className="footerInner">
           <div className="footerTop">
-            <span className="footerBadge">Ukesplan</span>
-            <span className="footerText">Mandag 02.03 → Fredag 06.03</span>
-            <span className="footerTiny">— ingen kontortid, bare vors-fokus —</span>
+            <span className="footerBadge">Kveldsprogram</span>
+            <span className="footerText">19:00 → 23:25</span>
+            <span className="footerTiny">— draken skal falle —</span>
           </div>
         </div>
       </footer>
