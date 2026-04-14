@@ -70,11 +70,11 @@ function App() {
   const remainingText = useMemo(() => formatRemainingDhS(xpState.remainingSeconds), [xpState.remainingSeconds])
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-white">
-      <img src={kontoretImage} alt="Kontoret" className="h-full w-full object-cover" />
+    <main className="app-root">
+      <img src={kontoretImage} alt="Kontoret" className="scene-image" />
 
       <div
-        className="pointer-events-none absolute bottom-28 left-1/2 -translate-x-1/2 font-['Press_Start_2P'] text-[22px] leading-none text-[#6dff2b] md:text-[28px]"
+        className="countdown-text"
         style={{
           textShadow:
             '-2px 0 #1f5d10, 2px 0 #1f5d10, 0 -2px #1f5d10, 0 2px #1f5d10, -2px -2px #1f5d10, 2px -2px #1f5d10, -2px 2px #1f5d10, 2px 2px #1f5d10',
@@ -83,9 +83,9 @@ function App() {
         {remainingText}
       </div>
 
-      <div className="pointer-events-none absolute bottom-24 left-1/2 h-3 w-[min(92vw,640px)] -translate-x-1/2 border-2 border-black bg-[#1b1b1b]">
+      <div className="xp-bar-shell">
         <div
-          className="h-full border-r-2 border-[#2f730f]"
+          className="xp-bar-fill"
           style={{
             width: progressWidth,
             backgroundImage:
@@ -98,7 +98,7 @@ function App() {
       <img
         src={toolbarImage}
         alt="Toolbar"
-        className="pointer-events-none absolute bottom-4 left-1/2 w-[min(92vw,640px)] -translate-x-1/2"
+        className="toolbar-image"
       />
     </main>
   )
