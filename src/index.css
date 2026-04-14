@@ -57,7 +57,7 @@ body {
   border-right: 2px solid #2f730f;
 }
 
-.toolbar-image {
+.toolbar-wrap {
   pointer-events: none;
   position: absolute;
   left: 50%;
@@ -65,6 +65,40 @@ body {
   transform: translateX(-50%);
   width: 92vw;
   max-width: 640px;
+}
+
+.toolbar-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.toolbar-slots-layer {
+  position: absolute;
+  inset: 0;
+  --toolbar-slot-start: 4.7%;
+  --toolbar-slot-end: 4.7%;
+  --toolbar-slot-gap: 0.8%;
+  --toolbar-item-fill: 94%;
+  --toolbar-slot-size: calc((100% - var(--toolbar-slot-start) - var(--toolbar-slot-end) - 9 * var(--toolbar-slot-gap)) / 10);
+}
+
+.toolbar-slot {
+  position: absolute;
+  top: 50%;
+  width: var(--toolbar-slot-size);
+  height: var(--toolbar-slot-size);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar-slot-item {
+  width: var(--toolbar-item-fill);
+  height: var(--toolbar-item-fill);
+  object-fit: contain;
+  image-rendering: pixelated;
 }
 
 @media (min-width: 768px) {
