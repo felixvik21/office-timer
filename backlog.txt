@@ -1,0 +1,7 @@
+- Man skal kunne endre ting fra sin mac også oppdateres det på skjermen live
+- En minecraft-side
+ - XP-bar
+ - Kontoret i minecraft som bakgrunn
+ - Itembar: pizza, jeger, e-drikk, mus, tastatur, jegershotglass, pils, ID, kalkulator
+ - I chatten står det folk som er hypa, koordinater til hvor strongholdet er
+

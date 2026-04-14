@@ -1,62 +1,15 @@
-:root {
-  --mc-font: 'Press Start 2P', monospace;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
 
-  --mc-void:        #1D1D1D;
-  --mc-panel-dark:  #373737;
-  --mc-panel-mid:   #8B8B8B;
-  --mc-panel-light: #C6C6C6;
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
 
-  --mc-bevel-in:  inset 2px 2px 0 #fff, inset -2px -2px 0 #555;
-  --mc-bevel-out: inset 2px 2px 0 #555, inset -2px -2px 0 #fff;
-
-  --mc-xp-fill:  #80FF20;
-  --mc-xp-bg:    #092000;
-  --mc-yellow:   #FFFF55;
-  --mc-gray:     #AAAAAA;
-  --mc-white:    #FFFFFF;
-
-  font-family: var(--mc-font);
-  line-height: 1.8;
-  font-weight: 400;
-  color: var(--mc-white);
-  background: var(--mc-void);
-
-  text-rendering: auto;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: unset;
-  image-rendering: pixelated;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow: hidden;
-  /* Minecraft panorama-inspirert bakgrunn: mørk nattehimmel → rødlilla horisont → mørk mark */
-  background:
-    radial-gradient(ellipse 140% 100% at 50% 50%, transparent 10%, rgba(0,0,0,0.68) 100%),
-    linear-gradient(
-      to bottom,
-      #06091a 0%,
-      #0c1230 15%,
-      #1a0e25 35%,
-      #260e06 48%,
-      #180a00 62%,
-      #0d0700 80%,
-      #070400 100%
-    );
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-#root {
-  width: 100%;
-}
-
-a {
-  color: inherit;
+  body {
+    margin: 0;
+    background: #fff;
+  }
 }

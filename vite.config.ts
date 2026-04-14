@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 function normalizeBasePath(value: string): string {
   const trimmed = value.trim()
@@ -17,6 +18,6 @@ export default defineConfig(() => {
 
   return {
     base,
-    plugins: [react()],
+    plugins: [react(), tailwindcss()],
   }
 })
