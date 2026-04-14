@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.cdnfonts.com/css/minecraft-3');
 
 html,
 body,
@@ -29,10 +29,12 @@ body {
   pointer-events: none;
   position: absolute;
   left: 50%;
-  bottom: 7rem;
+  bottom: 6.6rem;
   transform: translateX(-50%);
+  z-index: 2;
   margin: 0;
-  font-family: 'Press Start 2P', monospace;
+
+  font-family: 'Minecraft', sans-serif;
   font-size: 22px;
   line-height: 1;
   color: #6dff2b;
@@ -45,6 +47,7 @@ body {
   left: 50%;
   bottom: 6rem;
   transform: translateX(-50%);
+  z-index: 1;
   width: 92vw;
   max-width: 640px;
   height: 12px;
@@ -73,32 +76,95 @@ body {
   height: auto;
 }
 
+.toolbar-armor {
+  position: absolute;
+  bottom: calc(100% + var(--toolbar-armor-offset-y, 80px));
+}
+
+.toolbar-armor-image {
+  height: var(--toolbar-armor-height, 25px);
+  width: auto;
+  transform: translateX(var(--toolbar-armor-offset-x, 0px));
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.toolbar-hearts {
+  position: absolute;
+  bottom: calc(100% + var(--toolbar-hearts-offset-y, 56px));
+  display: flex;
+  align-items: center;
+  gap: var(--toolbar-heart-gap, 2px);
+}
+
+.toolbar-food {
+  position: absolute;
+  right: var(--toolbar-food-offset-x, 0px);
+  bottom: calc(100% + var(--toolbar-food-offset-y, 56px));
+}
+
+.toolbar-food-image {
+  width: calc((var(--toolbar-heart-size, 25px) * 10) + (var(--toolbar-heart-gap, 2px) * 9));
+  height: var(--toolbar-heart-size, 25px);
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.toolbar-heart {
+  width: var(--toolbar-heart-size, 25px);
+  height: var(--toolbar-heart-size, 25px);
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
 .toolbar-slots-layer {
   position: absolute;
   inset: 0;
-  --toolbar-slot-start: 4.7%;
-  --toolbar-slot-end: 4.7%;
-  --toolbar-slot-gap: 0.8%;
-  --toolbar-item-fill: 94%;
-  --toolbar-slot-size: calc((100% - var(--toolbar-slot-start) - var(--toolbar-slot-end) - 9 * var(--toolbar-slot-gap)) / 10);
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  align-items: start;
+  column-gap: 0.8%;
 }
 
 .toolbar-slot {
-  position: absolute;
-  top: 50%;
-  width: var(--toolbar-slot-size);
-  height: var(--toolbar-slot-size);
-  transform: translateY(-50%);
+  margin-top: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 60%;
+  min-width: 0;
 }
 
 .toolbar-slot-item {
-  width: var(--toolbar-item-fill);
-  height: var(--toolbar-item-fill);
+  width: var(--toolbar-item-size, 82%);
+  height: var(--toolbar-item-size, 82%);
+  transform: translate(var(--toolbar-item-offset-x, 0), var(--toolbar-item-offset-y, 0));
   object-fit: contain;
   image-rendering: pixelated;
+}
+
+.minecraft-chat {
+  pointer-events: none;
+  position: absolute;
+  left: 1rem;
+  bottom: 5.2rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: min(92vw, 640px);
+}
+
+.minecraft-chat-line {
+  margin: 0;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-family: 'Minecraft', monospace;
+  font-size: 16px;
+  line-height: 1.1;
+  text-shadow: 1px 1px 0 #000;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
