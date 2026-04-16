@@ -28,6 +28,20 @@ const CHAT_MESSAGES: string[] = [
   '<TonyWorep> Dette blir en kveld for historiebøkene',
   '<MagnusBrecke> TonyWorep kan jeg låne sengen din?',
   '<Ch0rizo> Nei! Lån min!',
+  '<TonyWorep> You may not rest, MagnusBrecke is nearby',
+  '',
+  '<Regel> Shot ved død (ekstra for creeper)',
+  '<Regel> Shot, del ut hvis man finner diamant-vein',
+  '<Regel> Shot ved suited up achievement',
+  '<Regel> Shot før draken-takedown',
+  '<Regel> Shot nether',
+  '',
+  '<Regel> Slurk ved hver achievement',
+  '<Regel> Slurk hver gang du tar damage',
+  '',
+  '<Regel> TODO: ta en waterbucket-clutch',
+  '<Regel> TODO: ri på ghast',
+  '<Regel> TODO: fiske',
 ]
 
 type ToolbarItem = {
