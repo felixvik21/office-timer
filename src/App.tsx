@@ -24,11 +24,12 @@ const COUNTDOWN_PAGES: Array<{ id: CountdownPage; label: string }> = [
 ]
 
 const CHAT_MESSAGES: string[] = [
-  '<Femux> Det blir draken takedown 18:00 på torsdag - kjør da',
+  '<loremodz> Det blir draken takedown 18:00 på torsdag - kjør da',
+  '<Skate_Goats> Kjør da! (Bokmålsdialekt)',
   '<TonyWorep> Dette blir en kveld for historiebøkene',
-  '<MagnusBrecke> TonyWorep kan jeg låne sengen din?',
-  '<Ch0rizo> Nei! Lån min!',
-  '<TonyWorep> You may not rest, MagnusBrecke is nearby',
+  '<Ninjabygger> TonyWorep kan jeg låne sengen din?',
+  '<Japlez> Nei! Lån min!',
+  '<TonyWorep> You may not rest, Ninjabygger is nearby',
   '',
   '<Regel> Shot ved død (ekstra for creeper)',
   '<Regel> Shot, del ut hvis man finner diamant-vein',
