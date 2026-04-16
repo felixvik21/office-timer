@@ -11,6 +11,7 @@ import toolbarImage from './assets/toolbar.png'
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000
 const ONE_SECOND_MS = 1000
+const ONE_WEEK_MS = 7 * ONE_DAY_MS
 const TOOLBAR_SLOT_COUNT = 10
 const SELECTED_TOOLBAR_SLOT = 1
 const COUNTDOWN_PAGE_STORAGE_KEY = 'countdown-active-page'
@@ -25,6 +26,8 @@ const COUNTDOWN_PAGES: Array<{ id: CountdownPage; label: string }> = [
 const CHAT_MESSAGES: string[] = [
   '<Femux> Det blir draken takedown 18:00 på torsdag - kjør da',
   '<TonyWorep> Dette blir en kveld for historiebøkene',
+  '<MagnusBrecke> TonyWorep kan jeg låne sengen din?',
+  '<Ch0rizo> Nei! Lån min!',
 ]
 
 type ToolbarItem = {
@@ -51,51 +54,45 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 function getWeekXpState(now: Date): { progress: number; remainingSeconds: number } {
-  const day = now.getDay() // 0=sun, 4=thu
-
-  const thisThursday = new Date(now)
-  const daysSinceThursday = (day - 4 + 7) % 7
-  thisThursday.setDate(now.getDate() - daysSinceThursday)
-  thisThursday.setHours(0, 0, 0, 0)
-
-  const endThursday = new Date(thisThursday)
-  if (day !== 4) {
-    endThursday.setDate(endThursday.getDate() + 7)
-  }
-
-  const startThursday = new Date(endThursday)
-  startThursday.setDate(startThursday.getDate() - 7)
-
-  const fillStartMs = startThursday.getTime()
-  const fillEndMs = new Date(
-    endThursday.getFullYear(),
-    endThursday.getMonth(),
-    endThursday.getDate(),
-    18,
-    0,
-    0,
-    0,
-  ).getTime()
-
-  const fullUntilMidnightMs = endThursday.getTime() + ONE_DAY_MS
   const nowMs = now.getTime()
+  const day = now.getDay() // 0=sun, 5=fri
 
-  if (nowMs >= fillEndMs && nowMs < fullUntilMidnightMs) {
-    return { progress: 1, remainingSeconds: 0 }
+  const cycleStart = new Date(now)
+  const daysSinceFriday = (day - 5 + 7) % 7
+  cycleStart.setDate(now.getDate() - daysSinceFriday)
+  cycleStart.setHours(3, 0, 0, 0)
+
+  if (nowMs < cycleStart.getTime()) {
+    cycleStart.setTime(cycleStart.getTime() - ONE_WEEK_MS)
   }
 
-  const progress = clamp((nowMs - fillStartMs) / (fillEndMs - fillStartMs), 0, 1)
-  const remainingSeconds = Math.max(0, Math.floor((fillEndMs - nowMs) / ONE_SECOND_MS))
+  const cycleStartMs = cycleStart.getTime()
+  const countdownEnd = new Date(cycleStart)
+  countdownEnd.setDate(countdownEnd.getDate() + 6)
+  countdownEnd.setHours(18, 0, 0, 0)
+  const countdownEndMs = countdownEnd.getTime()
+
+  const nextCycleStartMs = cycleStartMs + ONE_WEEK_MS
+
+  if (nowMs >= countdownEndMs && nowMs < nextCycleStartMs) {
+    return { progress: 0, remainingSeconds: 0 }
+  }
+
+  const cycleDurationMs = countdownEndMs - cycleStartMs
+  const elapsedMs = clamp(nowMs - cycleStartMs, 0, cycleDurationMs)
+  const progress = clamp(1 - elapsedMs / cycleDurationMs, 0, 1)
+  const remainingSeconds = Math.max(0, Math.floor((countdownEndMs - nowMs) / ONE_SECOND_MS))
 
   return { progress, remainingSeconds }
 }
 
-function formatRemainingDhS(totalSeconds: number): string {
+function formatRemainingDhMS(totalSeconds: number): string {
   const days = Math.floor(totalSeconds / (24 * 60 * 60))
   const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60))
+  const minutes = Math.floor((totalSeconds % (60 * 60)) / 60)
   const seconds = totalSeconds % 60
 
-  return `${days}d ${hours}t ${seconds}s`
+  return `${days}d ${hours}t ${minutes}m ${seconds}s`
 }
 
 function App() {
@@ -120,7 +117,7 @@ function App() {
 
   const xpState = useMemo(() => getWeekXpState(new Date(nowMs)), [nowMs])
   const progressWidth = `${Math.round(xpState.progress * 100)}%`
-  const remainingText = useMemo(() => formatRemainingDhS(xpState.remainingSeconds), [xpState.remainingSeconds])
+  const remainingText = useMemo(() => formatRemainingDhMS(xpState.remainingSeconds), [xpState.remainingSeconds])
 
   return (
     <main className="app-root">
