@@ -7,7 +7,7 @@ const COUNTDOWN_PAGE_STORAGE_KEY = 'countdown-active-page'
 type CountdownPage = 1 | 2
 
 const COUNTDOWN_PAGES: Array<{ id: CountdownPage; label: string; screen: ComponentType }> = [
-  { id: 1, label: 'default', screen: DefaultScreen },
+  { id: 1, label: 'Kontoret', screen: DefaultScreen },
   { id: 2, label: 'DT-torsdag', screen: DtTorsdagScreen },
 ]
 
